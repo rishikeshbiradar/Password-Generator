@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        Password Generator
+    </title>
+    <link rel="icon" href="logo.jpg" type="image/jpg">
+
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body{
+            background-color: crimson;
+        }
+        .custButton
+        {
+            accent-color: crimson;
+        }
+        #passwordLength
+        {
+            accent-color: crimson;
+        }
+        @media (max-width:580px) {
+            .box {
+                width: 400px;
+                height: auto;
+                padding: 10px;
+            }
+
+            h1 {
+                font-size: 25px;
+            }
+
+            .container {
+                width: 360px;
+            }
+
+            #passwordPrinter {
+                font-size: 19px;
+                margin-right: 0px;
+            }
+
+            #generator {
+                height: 40px;
+                width: 30px;
+                font-size: 30px;
+            }
+
+            p {
+                padding-left: 12px;
+            }
+
+            .settings {
+                width: 350px;
+                height: auto;
+                flex-direction: column;
+            }
+
+            .plen {
+                padding: 10px 0px;
+                font-size: 22px;
+            }
+
+            #pLength {
+                font-size: 23px;
+                padding: 0px;
+                height: auto;
+            }
+
+            #passwordLength {
+                width: 250px;
+            }
+        }
+
+        @media (max-width:430px) {
+            .box {
+                width: 350px;
+                height: auto;
+                padding: 10px;
+                margin: 10px auto;
+            }
+
+            h1 {
+                font-size: 22px;
+            }
+
+            .container {
+                width: 325px;
+            }
+
+            #passwordPrinter {
+                font-size: 18px;
+                margin-right: 0px;
+            }
+
+            #generator {
+                height: 40px;
+                width: 30px;
+                font-size: 30px;
+            }
+
+            p {
+                padding-left: 9px;
+            }
+
+            .settings {
+                width: 300px;
+                height: auto;
+                flex-direction: column;
+            }
+
+            .plen {
+                padding: 10px 0px;
+                font-size: 22px;
+            }
+
+            #pLength {
+                font-size: 23px;
+                padding: 0px;
+                height: auto;
+            }
+
+            #passwordLength {
+                width: 200px;
+            }
+        }
+
+        @media (max-width:380px) {
+            .box {
+                width: 300px;
+                height: auto;
+                padding: 10px;
+                margin: 10px auto;
+            }
+
+            h1 {
+                font-size: 19px;
+            }
+
+            .container {
+                width: 280px;
+            }
+
+            #passwordPrinter {
+                font-size: 15px;
+                margin-right: 0px;
+            }
+
+            #generator {
+                height: 40px;
+                width: 30px;
+                font-size: 30px;
+            }
+
+            p {
+                padding-left: 8px;
+            }
+
+            .settings {
+                width: 260px;
+                height: auto;
+                flex-direction: column;
+            }
+
+            .plen {
+                padding: 10px 0px;
+                font-size: 22px;
+            }
+
+            #pLength {
+                font-size: 23px;
+                padding: 0px;
+                height: auto;
+            }
+
+            #passwordLength {
+                width: 160px;
+            }
+
+            footer {
+                font-size: 15px;
+            }
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div id="body">
+        <div class="box">
+            <h1 id="mainHeading"> >> Generate a secure password </h1>
+            <div class="container">
+                <div id="passwordPrinter"></div>
+                <button id="generator" onclick="generate()">⟳</button>
+            </div>
+            <hr>
+            <p>Customize your password :</p>
+            <div class="settings">
+                <div class="btn">
+                    <li><input type="checkbox" name="" onclick="UpperCase()" class="custButton" id="UpperCase">UpperCase
+                    </li>
+                    <li><input type="checkbox" name="" onclick="LowerCase()" class="custButton" id="LowerCase">LowerCase
+                    </li>
+                    <li><input type="checkbox" name="" onclick="numbers()" class="custButton" id="number">Numbers</li>
+                    <li><input type="checkbox" name="" onclick="symbol()" class="custButton" id="symbol">Symbols</li>
+                    <li><input type="checkbox" name="" onclick="mixes()" class="custButton" id="mix">All Characters</li>
+                </div>
+                <div class="len">
+                    <div class="plen">
+                        Password Length : <span id="slider_value2" style="color:red;font-weight:bold;">8</span><br>
+                    </div>
+                    <div id="pLength">
+                        4 <input type="range" min="4" max="24" step="1" name="sld6" value="8" id="passwordLength"
+                            onchange="show_value2(this.value)" onclick="gen()"> 24
+                    </div>
+                </div>
+
+            </div>
+            <!-- Footer Section -->
+            <footer>
+                <h3>Copyright Ⓒ Rushikesh Biradar 2023 | All Rights Reserved</h3>
+            </footer>
+
+        </div>
+
+        <script src="script.js"></script>
+
+        <script>
+            function mixes() {
+                check();
+                content = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890!@#$^&<>?;";
+                document.getElementById("mix").checked = true
+                randomCharacter = content;
+                password = "";
+                let passwordLength = document.getElementById("passwordLength");
+
+                x = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+                for (let i = 0; i < 1; i++) {
+                    password = password + x.charAt(Math.random() * x.length);
+                }
+                x = "abcdefghijklmnopqrstuvwxyz"
+                for (let i = 0; i < 1; i++) {
+                    password = password + x.charAt(Math.random() * x.length);
+                }
+                x = "1234567890"
+                for (let i = 0; i < 1; i++) {
+                    password = password + x.charAt(Math.random() * x.length);
+                }
+                x = "!@#$^&<>?";
+                for (let i = 0; i < 1; i++) {
+                    password = password + x.charAt(Math.random() * x.length);
+                }
+
+                for (let i = 0; i < passwordLength.value - 4; i++) {
+                    password = password + randomCharacter.charAt(Math.random() * randomCharacter.length);
+                }
+                var showCaptcha = document.getElementById("passwordPrinter");
+                showCaptcha.innerHTML = `<span id="password">${password}</span> `;
+            }
+
+        </script>
+</body>
+
+</html>
